@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:study_in_banglore/application/bussiness_logic/bloc/colleges/colleges_bloc.dart';
 import 'package:study_in_banglore/application/bussiness_logic/bloc/courses/category_courses_bloc.dart';
 import 'package:study_in_banglore/application/presentation/courses/course_details.dart';
 import 'package:study_in_banglore/application/presentation/courses/courses_type_screen/courses_type_search.dart';
@@ -22,7 +23,11 @@ class CoursesTypeScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<CategoryCoursesBloc>().add(
             CategoryCoursesEvent.getCourses(
-              coursesQueryModel: CoursesQueryModel(page: 1, limit: 100, id: id),
+              coursesQueryModel: CoursesQueryModel(
+                  page: 1,
+                  limit: 100,
+                  id: id,
+                  city: context.read<CollegesBloc>().state.placeName),
             ),
           );
     });

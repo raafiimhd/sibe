@@ -104,11 +104,11 @@ class ScholarshipSubmission extends StatelessWidget {
                 onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(AppColors.primaryColor),
+                      WidgetStateProperty.all<Color>(AppColors.primaryColor),
                 ),
                 child: const Text(
                   "Submit",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: AppColors.kWhite),
                 ),
               ),
             ),

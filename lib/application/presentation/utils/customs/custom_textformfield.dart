@@ -33,7 +33,7 @@ class CustomTextFormField extends StatelessWidget {
                 return 'Please fill $labelText';
               }
               if (keyboardType == TextInputType.number && value.length != 10) {
-                return 'enter valid phone number';
+                return 'Enter a valid phone number';
               }
               return null;
             },

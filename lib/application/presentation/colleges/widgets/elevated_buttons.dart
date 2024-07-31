@@ -17,8 +17,8 @@ class ElevatedButtonsWidget extends StatelessWidget {
         ElevatedButton(
           style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all<Color>(AppColors.primaryColor),
-              fixedSize: MaterialStateProperty.all<Size>(const Size(120, 40))),
+                  WidgetStateProperty.all<Color>(AppColors.primaryColor),
+              fixedSize: WidgetStateProperty.all<Size>(const Size(120, 40))),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => ApplyCollegeScreen(

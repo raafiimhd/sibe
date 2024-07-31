@@ -13,7 +13,7 @@ QueryCollegeModel _$QueryCollegeModelFromJson(Map<String, dynamic> json) =>
       limit: json['limit'] as int?,
       courseId: json['course'] as int?,
       universityId: json['university'] as int?,
-      placeName: json['city'] as String?,
+      location: json['location'] as String?,
     );
 
 Map<String, dynamic> _$QueryCollegeModelToJson(QueryCollegeModel instance) =>
@@ -23,5 +23,5 @@ Map<String, dynamic> _$QueryCollegeModelToJson(QueryCollegeModel instance) =>
       'limit': instance.limit,
       'course': instance.courseId,
       'university': instance.universityId,
-      'city': instance.placeName,
+      'location': instance.location,
     };

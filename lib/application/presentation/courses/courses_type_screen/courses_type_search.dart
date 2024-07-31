@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:study_in_banglore/application/bussiness_logic/bloc/colleges/colleges_bloc.dart';
 import 'package:study_in_banglore/application/bussiness_logic/bloc/courses/category_courses_bloc.dart';
 import 'package:study_in_banglore/domain/core/constant/const.dart';
 import 'package:study_in_banglore/domain/models/category_courses/courses/courses_query_model.dart';
@@ -18,7 +19,7 @@ class CoustomSearchTypeField extends StatelessWidget {
             context.read<CategoryCoursesBloc>().add(
                 CategoryCoursesEvent.getCourses(
                     coursesQueryModel: CoursesQueryModel(
-                        search: value, page: 1, limit: 30, id: id)));
+                        search: value, page: 1, limit: 30, id: id,city: context.read<CollegesBloc>().state.placeName)));
           },
           decoration: const InputDecoration(
             hintText: 'Search for course',

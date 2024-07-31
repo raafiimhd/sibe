@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:study_in_banglore/application/bussiness_logic/bloc/colleges/colleges_bloc.dart';
 import 'package:study_in_banglore/application/bussiness_logic/bloc/parttime_job/parrtime_job_bloc.dart';
 import 'package:study_in_banglore/application/presentation/home/widgets/apply_screens/apply_screen.dart';
 import 'package:study_in_banglore/application/presentation/utils/customs/cusom_app_bar.dart';
@@ -17,19 +18,19 @@ class ParttimeJobScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ParrtimeJobBloc>().add(
             ParrtimeJobEvent.parttimeJob(
-              queryModel: QueryModel(page: 1, limit: 30),
+              queryModel: QueryModel(page: 1, limit: 30,location: context.read<CollegesBloc>().state.placeName),
             ),
           );
     });
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(56),
+          preferredSize: const Size.fromHeight(56),
           child: CustomAppBar(
               leading: IconButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(Icons.arrow_back)),
+                  icon: const Icon(Icons.arrow_back)),
               title: 'ParttimeJob')),
       body: BlocConsumer<ParrtimeJobBloc, ParrtimeJobState>(
         listener: (context, state) {
@@ -73,11 +74,11 @@ class ParttimeJobScreen extends StatelessWidget {
                         ListTile(
                           title: Text(
                             parttime.title!,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           subtitle: Text(parttime.place!),
                           trailing: ElevatedButton(
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                   fixedSize: WidgetStatePropertyAll<Size>(
                                       Size(100, 30)),
                                   backgroundColor:
@@ -85,10 +86,10 @@ class ParttimeJobScreen extends StatelessWidget {
                                           AppColors.primaryColor)),
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ApplyScreen(),
+                                  builder: (context) => const ApplyScreen(),
                                 ));
                               },
-                              child: Text(
+                              child: const Text(
                                 'Apply',
                                 style: TextStyle(color: AppColors.kWhite),
                               )),
@@ -100,7 +101,7 @@ class ParttimeJobScreen extends StatelessWidget {
               },
             );
           } else {
-            return Center(
+            return const Center(
               child: Text('ParttimeJob Not Available'),
             );
           }

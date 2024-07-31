@@ -18,8 +18,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController phnNumController = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final GlobalKey<FormState> signUpKey = GlobalKey<FormState>();
   AuthBloc(this.repository) : super(AuthState.initial()) {
     on<SignUP>((event, emit) async {
       emit(state.copyWith(

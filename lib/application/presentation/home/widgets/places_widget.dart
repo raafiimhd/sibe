@@ -13,17 +13,22 @@ class PlacesWidget extends StatelessWidget {
       'Kerala',
       'Delhi',
       'Mumbai',
-      "Chennai",
-      "Tamil Nadu",
-      "Mysore"
+      'Chennai',
+      'Tamil Nadu',
+      'Mysore'
     ];
 
     return BlocBuilder<CollegesBloc, CollegesState>(
       builder: (context, state) {
+        String? dropdownValue = state.placeName;
+        if (!places.contains(state.placeName)) {
+          dropdownValue = null;
+        }
+
         return Row(
           children: [
             DropdownButton<String>(
-              value: context.watch<CollegesBloc>().state.placeName,
+              value: dropdownValue,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               items: places.map<DropdownMenuItem<String>>(
                 (place) {
@@ -37,10 +42,12 @@ class PlacesWidget extends StatelessWidget {
                 },
               ).toList(),
               onChanged: (selectedPlace) {
-                context.read<CollegesBloc>().add(PlaceCollege(place: selectedPlace!));
+                if (selectedPlace != null) {
+                  context.read<CollegesBloc>().add(PlaceCollege(place: selectedPlace));
+                }
               },
               hint: Text(
-                "Places",
+                'Places',
                 style: TextStyle(color: AppColors.kGrey),
               ),
               icon: const Icon(

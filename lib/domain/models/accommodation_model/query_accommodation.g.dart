@@ -13,6 +13,7 @@ QueryAccommodation _$QueryAccommodationFromJson(Map<String, dynamic> json) =>
       longitude: (json['longitude'] as num?)?.toDouble(),
       page: json['page'] as int?,
       radius: json['radius'] as int?,
+      city: json['location'] as String?,
     );
 
 Map<String, dynamic> _$QueryAccommodationToJson(QueryAccommodation instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$QueryAccommodationToJson(QueryAccommodation instance) =>
       'radius': instance.radius,
       'page': instance.page,
       'limit': instance.limit,
+      'location': instance.city,
     };

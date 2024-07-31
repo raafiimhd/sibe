@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:study_in_banglore/domain/models/colleges/apply_college/apply_college.dart';
 import 'package:study_in_banglore/domain/models/colleges/apply_college/data/data.dart';
 import 'package:study_in_banglore/domain/models/colleges/college_details/college_details.dart';
@@ -66,10 +67,27 @@ class CollegesBloc extends Bloc<CollegesEvent, CollegesState> {
               message: resp.message,
               applyCollege: resp)));
     });
-    on<PlaceCollege>((event, emit) {
-      emit(state.copyWith(placeName: event.place));
-      add(CollegesEvent.getColleges(
-          queryCollegeModel: QueryCollegeModel(placeName: event.place)));
-    });
+   on<PlaceCollege>(_onPlaceCollege);
+    _loadInitialPlace();
   }
-}
+
+  Future<void> _loadInitialPlace() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedPlace = prefs.getString('selected_place');
+    if (savedPlace != null) {
+      add(PlaceCollege(place: savedPlace));
+    }
+  }
+
+  Future<void> _onPlaceCollege(PlaceCollege event, Emitter<CollegesState> emit) async {
+    emit(state.copyWith(placeName: event.place));
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selected_place', event.place);
+    add(CollegesEvent.getColleges(
+        queryCollegeModel: QueryCollegeModel(location: event.place)));
+  }
+
+    
+  }
+
+

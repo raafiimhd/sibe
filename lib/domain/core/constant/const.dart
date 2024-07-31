@@ -20,6 +20,9 @@ const kWidth20 = SizedBox(
 const kWidth30 = SizedBox(
   width: 30,
 );
+const kWidth60 = SizedBox(
+  width: 60,
+);
 const kWidth80 = SizedBox(
   width: 80,
 );

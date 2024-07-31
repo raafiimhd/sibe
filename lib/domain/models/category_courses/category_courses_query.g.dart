@@ -13,6 +13,7 @@ CategoryCourseQuery _$CategoryCourseQueryFromJson(Map<String, dynamic> json) =>
       limit: json['limit'] as int?,
       courseMode: json['course_mode'] as String?,
       durationType: json['duration_type'] as String?,
+      city: json['location'] as String?,
     );
 
 Map<String, dynamic> _$CategoryCourseQueryToJson(
@@ -23,4 +24,5 @@ Map<String, dynamic> _$CategoryCourseQueryToJson(
       'limit': instance.limit,
       'course_mode': instance.courseMode,
       'duration_type': instance.durationType,
+      'location': instance.city,
     };

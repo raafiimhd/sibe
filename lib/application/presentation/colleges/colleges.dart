@@ -22,7 +22,7 @@ class CollegesScreen extends StatelessWidget {
             CollegesEvent.getColleges(
                 queryCollegeModel: QueryCollegeModel(
               universityId: id,
-              placeName: context.read<CollegesBloc>().state.placeName
+              location: context.read<CollegesBloc>().state.placeName
             )),
           );
     });

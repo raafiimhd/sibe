@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:study_in_banglore/application/bussiness_logic/bloc/colleges/colleges_bloc.dart';
 import 'package:study_in_banglore/application/bussiness_logic/bloc/courses/category_courses_bloc.dart';
 import 'package:study_in_banglore/application/presentation/courses/courses_type_screen/courses_type_screen.dart';
 import 'package:study_in_banglore/application/presentation/courses/widgets/courses_search/courses_search.dart';
@@ -21,7 +22,10 @@ class OnlineCourses extends StatelessWidget {
       context.read<CategoryCoursesBloc>().add(
             CategoryCoursesEvent.getCategoryCourses(
               queryModel:
-                  CategoryCourseQuery(page: 1, limit: 100, courseMode: 'Online'),
+                  CategoryCourseQuery(page: 1,
+                   limit: 100,
+                   courseMode: 'Online',
+                   city: context.read<CollegesBloc>().state.placeName),
             ),
           );
     });

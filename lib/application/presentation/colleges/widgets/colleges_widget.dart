@@ -7,7 +7,6 @@ import 'package:study_in_banglore/application/bussiness_logic/bloc/colleges/coll
 import 'package:study_in_banglore/application/presentation/colleges/colleges_details.dart';
 import 'package:study_in_banglore/application/presentation/utils/snack_bar/snack_bar.dart';
 import 'package:study_in_banglore/domain/core/color/colors.dart';
-import 'package:study_in_banglore/domain/core/constant/const.dart';
 
 class CollegesWidgets extends StatelessWidget {
   const CollegesWidgets({
@@ -15,6 +14,9 @@ class CollegesWidgets extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    final double sWidth = screenSize.width;
+
     return BlocConsumer<CollegesBloc, CollegesState>(
       listener: (context, state) {
         if (state.hasError) {
@@ -29,10 +31,10 @@ class CollegesWidgets extends StatelessWidget {
         if (state.isLoading) {
           return Center(
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(screenSize.width * 0.03), // Responsive padding
               child: LoadingAnimationWidget.inkDrop(
                 color: AppColors.kGrey,
-                size: 25,
+                size: screenSize.width * 0.06, // Responsive size
               ),
             ),
           );
@@ -45,16 +47,19 @@ class CollegesWidgets extends StatelessWidget {
               itemBuilder: (context, index) {
                 final college = state.colleges!.data![index];
                 return Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: EdgeInsets.all(screenSize.width * 0.02), // Responsive padding
                   child: Container(
                     height: sWidth * 0.4,
                     decoration: BoxDecoration(
                       color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(screenSize.width * 0.05), // Responsive radius
                     ),
                     child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, right: 5, top: 20),
+                      padding: EdgeInsets.only(
+                        left: screenSize.width * 0.04, // Responsive left padding
+                        right: screenSize.width * 0.02, // Responsive right padding
+                        top: screenSize.height * 0.025, // Responsive top padding
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -64,16 +69,18 @@ class CollegesWidgets extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   college.college!,
-                                  style: const TextStyle(
-                                      color: AppColors.kWhite, fontSize: 17),
+                                  style: TextStyle(
+                                    color: AppColors.kWhite,
+                                    fontSize: screenSize.width * 0.045, // Responsive font size
+                                  ),
                                   maxLines: 2,
                                 ),
                               ),
                               IconButton(
                                 onPressed: () {},
-                                icon: const Icon(
+                                icon: Icon(
                                   Iconsax.save_minus4,
-                                  size: 30,
+                                  size: screenSize.width * 0.08, // Responsive icon size
                                   color: AppColors.kGrey,
                                 ),
                               ),
@@ -81,60 +88,72 @@ class CollegesWidgets extends StatelessWidget {
                           ),
                           Text(
                             college.place ?? 'Kochi',
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 16),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: screenSize.width * 0.04, // Responsive font size
+                            ),
                             maxLines: 2,
                           ),
                           Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      '${college.rating}',
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          color: AppColors.kWhite),
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    '${college.rating}',
+                                    style: TextStyle(
+                                      fontSize: screenSize.width * 0.04, // Responsive font size
+                                      color: AppColors.kWhite,
                                     ),
-                                    kWidth5,
-                                    RatingBar.builder(
-                                      initialRating: college.rating!.toDouble(),
-                                      minRating: 1,
-                                      direction: Axis.horizontal,
-                                      allowHalfRating: true,
-                                      itemCount: 5,
-                                      itemSize: 20,
-                                      itemPadding: const EdgeInsets.symmetric(
-                                          horizontal: 3.0),
-                                      itemBuilder: (context, _) => const Icon(
-                                        Icons.star,
-                                        color: Colors.amber,
-                                        size: 20,
+                                  ),
+                                  SizedBox(width: screenSize.width * 0.01), // Responsive width
+                                  RatingBar.builder(
+                                    initialRating: college.rating!.toDouble(),
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemSize: screenSize.width * 0.05, // Responsive item size
+                                    itemPadding: EdgeInsets.symmetric(
+                                      horizontal: screenSize.width * 0.01, // Responsive item padding
+                                    ),
+                                    itemBuilder: (context, _) => const Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 20,
+                                    ),
+                                    onRatingUpdate: (rating) {},
+                                  ),
+                                ],
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (ctx) => CollegesDetailsScreen(
+                                        id: college.id!,
                                       ),
-                                      onRatingUpdate: (rating) {},
                                     ),
-                                  ],
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (ctx) =>
-                                                CollegesDetailsScreen(
-                                                  id: college.id!,
-                                                )));
-                                  },
-                                  style: ButtonStyle(
-                                    minimumSize:
-                                        WidgetStateProperty.all<Size>(
-                                            const Size(40, 40)),
-                                  ),
-                                  child: const Text(
-                                    "Explore",
-                                    style: TextStyle(color: AppColors.kBlack),
+                                  );
+                                },
+                                style: ButtonStyle(
+                                  minimumSize: WidgetStateProperty.all<Size>(
+                                    Size(
+                                      screenSize.width * 0.2, // Responsive width
+                                      screenSize.height * 0.05, // Responsive height
+                                    ),
                                   ),
                                 ),
-                              ])
+                                child: Text(
+                                  "Explore",
+                                  style: TextStyle(
+                                    color: AppColors.kBlack,
+                                    fontSize: screenSize.width * 0.04, // Responsive font size
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -144,8 +163,14 @@ class CollegesWidgets extends StatelessWidget {
             ),
           );
         } else {
-          return const Center(
-            child: Text('Colleges Not Available'),
+          return Center(
+            child: Text(
+              'Colleges Not Available',
+              style: TextStyle(
+                color: AppColors.kBlack,
+                fontSize: screenSize.width * 0.04, // Responsive font size
+              ),
+            ),
           );
         }
       },

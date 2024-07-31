@@ -31,7 +31,7 @@ class CourseDetailsScreen extends StatelessWidget {
       context.read<CollegesBloc>().add(
             CollegesEvent.getColleges(
                 queryCollegeModel:
-                    QueryCollegeModel(page: 1, limit: 30, courseId: id)),
+                    QueryCollegeModel(page: 1, limit: 30, courseId: id,)),
           );
     });
     return Scaffold(

@@ -32,7 +32,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="https://dev-sib.anandagireesh.me/api/user"/>
+                <data android:scheme="http" android:host="https://sibdev.extramindtech.com"/>
                 <data android:scheme="https" />
             </intent-filter>
         </activity>

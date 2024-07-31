@@ -16,7 +16,9 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final signupBloc = context.read<AuthBloc>();
+    final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
     phoneNum = signupBloc.phnNumController.text;
     return Scaffold(
         appBar: PreferredSize(
@@ -36,7 +38,7 @@ class SignUp extends StatelessWidget {
         body: Center(
           child: SingleChildScrollView(
             child: Form(
-              key: signupBloc.signUpKey,
+              key: signUpFormKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,8 +90,7 @@ class SignUp extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            if (signupBloc.signUpKey.currentState!.validate()) {
-                              FocusScope.of(context).unfocus();
+                            if (signUpFormKey.currentState!.validate()) {
                               signupBloc.add(const SignUP());
                             }
                           },

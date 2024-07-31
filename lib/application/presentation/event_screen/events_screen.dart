@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:study_in_banglore/application/bussiness_logic/bloc/Events/events_bloc.dart';
+import 'package:study_in_banglore/application/bussiness_logic/bloc/colleges/colleges_bloc.dart';
 import 'package:study_in_banglore/application/presentation/home/widgets/apply_screens/apply_events.dart';
 import 'package:study_in_banglore/application/presentation/utils/customs/cusom_app_bar.dart';
 import 'package:study_in_banglore/application/presentation/utils/snack_bar/snack_bar.dart';
@@ -17,7 +18,7 @@ class EventsScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<EventsBloc>().add(
             EventsEvent.getEvents(
-              queryModel: QueryModel(page: 1, limit: 30),
+              queryModel: QueryModel(page: 1, limit: 30,),
             ),
           );
     });
@@ -101,7 +102,7 @@ class EventsScreen extends StatelessWidget {
             );
           } else {
             return Center(
-              child: Text('ParttimeJob Not Available'),
+              child: Text('Events Not Available'),
             );
           }
         },

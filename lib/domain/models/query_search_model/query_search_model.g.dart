@@ -11,6 +11,7 @@ QuerySearchModel _$QuerySearchModelFromJson(Map<String, dynamic> json) =>
       search: json['s'] as String?,
       page: json['page'] as int?,
       limit: json['limit'] as int?,
+      location: json['location'] as String?,
     );
 
 Map<String, dynamic> _$QuerySearchModelToJson(QuerySearchModel instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$QuerySearchModelToJson(QuerySearchModel instance) =>
       's': instance.search,
       'page': instance.page,
       'limit': instance.limit,
+      'location': instance.location,
     };

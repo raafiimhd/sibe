@@ -7,10 +7,12 @@ class QuerySearchModel {
   String? search;
   int? page;
   int? limit;
+  String? location;
   QuerySearchModel({
     this.search,
     this.page,
     this.limit,
+    this.location
   });
 
   factory QuerySearchModel.fromJson(Map<String, dynamic> json) =>

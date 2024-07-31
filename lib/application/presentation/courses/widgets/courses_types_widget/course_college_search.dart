@@ -18,7 +18,7 @@ class CourseCollegeSearch extends StatelessWidget {
           onChanged: (value) {
             context.read<CollegesBloc>().add(CollegesEvent.getColleges(
                 queryCollegeModel: QueryCollegeModel(
-                    search: value, page: 1, limit: 30, courseId: id)));
+                    search: value, page: 1, limit: 30, courseId: id,location: context.read<CollegesBloc>().state.placeName)));
           },
           decoration: const InputDecoration(
             hintText: 'Search for colleges',

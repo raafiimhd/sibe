@@ -12,8 +12,10 @@ class CategoryCourseQuery {
   String? courseMode;
   @JsonKey(name: 'duration_type')
   String? durationType;
+  @JsonKey(name: 'location')
+  String? city;
   CategoryCourseQuery(
-      {this.search, this.page, this.limit, this.courseMode, this.durationType});
+      {this.search, this.page, this.limit, this.courseMode, this.durationType,this.city});
 
   factory CategoryCourseQuery.fromJson(Map<String, dynamic> json) =>
       _$CategoryCourseQueryFromJson(json);

@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signin = context.read<AuthBloc>();
+    final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: const PreferredSize(
           preferredSize: Size.fromHeight(56),
@@ -22,13 +23,13 @@ class LoginScreen extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           child: Form(
-            key: signin.formKey,
+            key: loginFormKey,
             child: Column(
               children: [
                 CustomTextFormField(
                     controller: signin.phnNumController,
                     labelText: 'Phone Number',
-                    keyboardType: TextInputType.phone),
+                    keyboardType: TextInputType.number),
                 kHeight20,
                 BlocConsumer<AuthBloc, AuthState>(
                   listener: (context, state) {
@@ -68,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          if (signin.formKey.currentState!.validate()) {
+                          if (loginFormKey.currentState!.validate()) {
                             signin.add(const SignIn());
                           }
                         },

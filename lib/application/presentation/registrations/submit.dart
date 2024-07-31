@@ -127,7 +127,7 @@ class Submit extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
+                    backgroundColor: WidgetStateProperty.all<Color>(
                         AppColors.primaryColor),
                   ),
                   child: const Text(

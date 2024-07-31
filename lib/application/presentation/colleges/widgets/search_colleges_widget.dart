@@ -19,6 +19,7 @@ class SearchCollegesWidget extends StatelessWidget {
             context.read<CollegesBloc>().add(CollegesEvent.getColleges(
                     queryCollegeModel: QueryCollegeModel(
                   search: value,
+                  location: context.read<CollegesBloc>().state.placeName,
                   page: 1,
                   limit: 30,
                 )));

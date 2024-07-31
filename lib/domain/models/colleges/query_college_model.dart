@@ -11,10 +11,9 @@ class QueryCollegeModel {
   int? courseId;
   @JsonKey(name: 'university')
   int? universityId;
-  @JsonKey(name: 'city')
-  String? placeName;
+  String? location;
   QueryCollegeModel(
-      {this.search, this.page, this.limit, this.courseId, this.universityId,this.placeName});
+      {this.search, this.page, this.limit, this.courseId, this.universityId,this.location});
 
   factory QueryCollegeModel.fromJson(Map<String, dynamic> json) =>
       _$QueryCollegeModelFromJson(json);

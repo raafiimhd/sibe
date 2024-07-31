@@ -11,8 +11,10 @@ class CoursesQueryModel {
   int? limit;
   @JsonKey(name: 's')
   String? search;
+  @JsonKey(name: 'location')
+  String? city;
   CoursesQueryModel(
-      {this.id, this.page, this.limit, this.collegId, this.search});
+      {this.id, this.page, this.limit, this.collegId, this.search,this.city});
 
   factory CoursesQueryModel.fromJson(Map<String, dynamic> json) =>
       _$CoursesQueryModelFromJson(json);
