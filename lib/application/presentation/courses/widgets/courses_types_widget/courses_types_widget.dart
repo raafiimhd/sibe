@@ -27,7 +27,6 @@ class CoursesTypeWidget extends StatelessWidget {
             state.coursesDetailsModel!.data != null) {
           final course = state.coursesDetailsModel!.data;
           return Container(
-            height: height * 0.4,
             decoration: BoxDecoration(color: Colors.grey[300]),
             child: Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20),

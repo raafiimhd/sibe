@@ -18,7 +18,7 @@ class EventsScreen extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<EventsBloc>().add(
             EventsEvent.getEvents(
-              queryModel: QueryModel(page: 1, limit: 30,),
+              queryModel: QueryModel(page: 1, limit: 30,location: context.read<CollegesBloc>().state.placeName),
             ),
           );
     });
